@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "bedmesh",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "The routes of the Bed Mesh extension. Every path is relative to the mount the host assigns. A printer is always read as the person who asked, and one they may not see answers PRINTER_NOT_FOUND."
   },
   "paths": {
