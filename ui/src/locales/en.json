@@ -51,5 +51,7 @@
   "bedmesh.usb.reading": "Reading…",
   "bedmesh.usb.hint": "Pick the printer's port in the browser's dialog. The page sends M420 V and nothing else.",
   "bedmesh.usb.unavailable": "Reading over USB needs Chrome or Edge on a computer, with Prusa Connect opened over HTTPS or on localhost. You can still paste the output of M420 V.",
-  "bedmesh.usb.failed": "The printer could not be read over USB. Check the cable, and close any other program that holds the port."
+  "bedmesh.usb.failed": "The printer could not be read over USB. Check the cable, and close any other program that holds the port.",
+  "bedmesh.paste.why": "Why USB? The printer keeps the measured mesh in its memory and, for now, prints it only on its USB port: over Prusa Connect it sends no mesh back. We have asked Prusa to send it to Connect (Prusa-Firmware-Buddy issue #5626); when they do, this extension will read it automatically and this step goes away.",
+  "bedmesh.manual": "How to use Bed Mesh"
 }

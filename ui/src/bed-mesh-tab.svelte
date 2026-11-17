@@ -49,6 +49,10 @@
 
   let { deviceId }: { deviceId: string } = $props();
 
+  /** The user manual, on the extension's repository. */
+  const MANUAL_URL =
+    'https://github.com/HonzaJaros/connect-bed-mesh/blob/main/docs/MANUAL.md';
+
   const host = heldHost();
   const t = host.t;
   const meshes = meshesOn(host);
@@ -273,6 +277,15 @@
     </CardHeader>
     <CardContent class="flex flex-col gap-3">
       <p class="text-sm text-muted-foreground">{t('bedmesh.paste.body')}</p>
+      <p class="text-xs text-muted-foreground">
+        {t('bedmesh.paste.why')}
+        <a
+          class="text-link underline-offset-4 hover:underline"
+          href={MANUAL_URL}
+          target="_blank"
+          rel="noopener noreferrer">{t('bedmesh.manual')}</a
+        >
+      </p>
       <div class="flex flex-wrap items-center gap-2">
         {#if usb}
           <Button variant="secondary" disabled={reading} onclick={readUsb}>

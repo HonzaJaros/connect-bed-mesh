@@ -51,5 +51,7 @@
   "bedmesh.usb.reading": "Načítám…",
   "bedmesh.usb.hint": "V dialogu prohlížeče vyberte port tiskárny. Stránka pošle jen M420 V.",
   "bedmesh.usb.unavailable": "Načtení přes USB vyžaduje Chrome nebo Edge na počítači a Prusa Connect otevřený přes HTTPS nebo na localhostu. Výpis M420 V můžete i tak vložit ručně.",
-  "bedmesh.usb.failed": "Tiskárnu se nepodařilo přes USB načíst. Zkontrolujte kabel a zavřete jiné programy, které port používají."
+  "bedmesh.usb.failed": "Tiskárnu se nepodařilo přes USB načíst. Zkontrolujte kabel a zavřete jiné programy, které port používají.",
+  "bedmesh.paste.why": "Proč USB? Tiskárna má změřený mesh v paměti a zatím ho vypisuje jen na svůj USB port: přes Prusa Connect mesh neposílá. Požádali jsme Prusu, aby ho do Connectu posílala (issue #5626 v Prusa-Firmware-Buddy); až to udělá, rozšíření ho načte samo a tento krok odpadne.",
+  "bedmesh.manual": "Jak Bed Mesh používat"
 }

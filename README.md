@@ -7,7 +7,7 @@ point-by-point comparison between any two.
 For printers with Prusa's **Buddy (xBuddy) firmware**: MK4 / MK4S, MK3.5, MK3.9,
 Core One / Core One L, XL, MINI / MINI+.
 
-**[User manual](docs/MANUAL.md)**
+**[User manual](https://github.com/HonzaJaros/connect-bed-mesh/blob/main/docs/MANUAL.md)**
 
 ## What it does
 
