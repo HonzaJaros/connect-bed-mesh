@@ -14,8 +14,8 @@ import (
 	"github.com/prusa3d/prusa-connect/sdk/fault"
 	"github.com/prusa3d/prusa-connect/sdk/routesapi"
 
-	"github.com/honzajaros/prusa-connect-bed-mesh/internal/mesh"
-	"github.com/honzajaros/prusa-connect-bed-mesh/internal/store"
+	"github.com/honzajaros/connect-bed-mesh/internal/mesh"
+	"github.com/honzajaros/connect-bed-mesh/internal/store"
 )
 
 // Fleet is the one call this module makes to the core: reading a printer as

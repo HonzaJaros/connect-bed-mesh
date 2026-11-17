@@ -1,7 +1,7 @@
 {
   "name": "bedmesh-client",
   "version": "0.1.0",
-  "description": "A typed client for the routes of module com.github.aux.honzajaros.prusa-connect-bed-mesh, generated from its OpenAPI fragment. It binds onto a @prusa/connect client.",
+  "description": "A typed client for the routes of module com.github.aux.honzajaros.connect-bed-mesh, generated from its OpenAPI fragment. It binds onto a @prusa/connect client.",
   "type": "module",
   "sideEffects": false,
   "exports": {

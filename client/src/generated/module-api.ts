@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/parse": {
+    "/api/v1/modules/com.github.aux.honzajaros.connect-bed-mesh/parse": {
         parameters: {
             query?: never;
             header?: never;
@@ -24,7 +24,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/printers/{device_id}/meshes": {
+    "/api/v1/modules/com.github.aux.honzajaros.connect-bed-mesh/printers/{device_id}/meshes": {
         parameters: {
             query?: never;
             header?: never;
@@ -48,7 +48,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/printers/{device_id}/meshes/{mesh_id}": {
+    "/api/v1/modules/com.github.aux.honzajaros.connect-bed-mesh/printers/{device_id}/meshes/{mesh_id}": {
         parameters: {
             query?: never;
             header?: never;

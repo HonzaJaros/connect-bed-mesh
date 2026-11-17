@@ -2,8 +2,8 @@
 # and the browser bundle under ui/.
 #
 # The namespace is derived by the host from the repository address:
-# github.com/honzajaros/prusa-connect-bed-mesh is
-# com.github.aux.honzajaros.prusa-connect-bed-mesh.
+# github.com/honzajaros/connect-bed-mesh is
+# com.github.aux.honzajaros.connect-bed-mesh.
 
 name: bedmesh
 kind: sink

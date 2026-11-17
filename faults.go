@@ -15,10 +15,10 @@ import (
 )
 
 // faultDomain is this module's namespace, derived from the Go module path
-// github.com/honzajaros/prusa-connect-bed-mesh.
+// github.com/honzajaros/connect-bed-mesh.
 //
 //nolint:gochecknoglobals // a domain built once at start-up; a const cannot hold one.
-var faultDomain = mustDomain("com.github.aux.honzajaros.prusa-connect-bed-mesh")
+var faultDomain = mustDomain("com.github.aux.honzajaros.connect-bed-mesh")
 
 // The codes this module raises.
 //

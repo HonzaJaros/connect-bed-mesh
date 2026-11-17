@@ -21,7 +21,7 @@ import (
 
 	"github.com/prusa3d/prusa-connect/sdk/stateapi"
 
-	"github.com/honzajaros/prusa-connect-bed-mesh/internal/mesh"
+	"github.com/honzajaros/connect-bed-mesh/internal/mesh"
 )
 
 // ErrNoMesh is a mesh id the printer holds no mesh under.

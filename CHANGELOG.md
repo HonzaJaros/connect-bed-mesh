@@ -5,7 +5,10 @@ What changes for an operator of Bed Mesh. The top heading is the `version` in
 
 ## 0.1.2
 
-- The same extension as 0.1.1. The marketplace build of 0.1.1 failed before
+- The extension id is now `com.github.aux.honzajaros.connect-bed-mesh`, from
+  the repository `github.com/honzajaros/connect-bed-mesh`: the marketplace
+  reserves ids that contain "prusa".
+- Otherwise the same extension as 0.1.1. The marketplace build of 0.1.1 failed before
   publishing: the client package did not pin its pnpm version, so the builder
   used a newer pnpm that refused the lockfile.
 

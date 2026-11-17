@@ -4,7 +4,7 @@
 // serves them to the printer tab the browser half draws.
 //
 // The routes are in routes.go and openapi.json. Every path is relative to the
-// mount, /api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/.
+// mount, /api/v1/modules/com.github.aux.honzajaros.connect-bed-mesh/.
 // The host decides who may call a route (view_resource on the instance for a
 // read, operate_resource for a write), and this process reads every printer as
 // the person who asked, so nobody reads the meshes of a printer they may not
@@ -28,8 +28,8 @@ import (
 	"github.com/prusa3d/prusa-connect/sdk/wire"
 	"github.com/prusa3d/prusa-connect/sdk/wirerpc"
 
-	"github.com/honzajaros/prusa-connect-bed-mesh/internal/filerecords"
-	"github.com/honzajaros/prusa-connect-bed-mesh/internal/store"
+	"github.com/honzajaros/connect-bed-mesh/internal/filerecords"
+	"github.com/honzajaros/connect-bed-mesh/internal/store"
 )
 
 // manifestYAML is module.yaml, built into the binary, so the name and version

@@ -60,7 +60,7 @@ browser as the signed-in person, so Prusa Connect's own permissions apply.
   and keeps each printer's meshes in its data directory (`internal/store`, `internal/filerecords`).
 - **Bundle** (Svelte, `ui/`): the printer tab, heatmap (SVG), 3D surface (canvas), Web
   Serial reader (`ui/src/usb.ts`).
-- **API** (`openapi.json`, relative to `/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/`):
+- **API** (`openapi.json`, relative to `/api/v1/modules/com.github.aux.honzajaros.connect-bed-mesh/`):
 
 | route | |
 |---|---|
@@ -101,7 +101,7 @@ After changing `openapi.json`, run `make client` and commit what it writes.
 Releases go to the [Prusa Plugin Marketplace](https://plugin-marketplace.prusa3d.com/connect)
 from GitHub Actions (`.github/workflows/release.yml`). One-time setup:
 
-1. Push this repository to `github.com/honzajaros/prusa-connect-bed-mesh` as a **public**
+1. Push this repository to `github.com/honzajaros/connect-bed-mesh` as a **public**
    repository. The extension id is derived from that path and never changes.
 2. Create an author profile on the marketplace, and make a signing key:
    ```bash
@@ -117,8 +117,8 @@ from GitHub Actions (`.github/workflows/release.yml`). One-time setup:
    gh secret set PRUSA_CONNECT_EXTENSION_SIGNING_KEY --env release < private_key.pem
    ```
 4. In the marketplace's author console, turn on **trusted publishing** for
-   `com.github.aux.honzajaros.prusa-connect-bed-mesh`, repository
-   `honzajaros/prusa-connect-bed-mesh`, workflow `release.yml`, environment `release`.
+   `com.github.aux.honzajaros.connect-bed-mesh`, repository
+   `honzajaros/connect-bed-mesh`, workflow `release.yml`, environment `release`.
 
 Then every release is:
 

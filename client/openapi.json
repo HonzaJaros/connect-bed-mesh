@@ -206,7 +206,7 @@
   },
   "openapi": "3.1.0",
   "paths": {
-    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/parse": {
+    "/api/v1/modules/com.github.aux.honzajaros.connect-bed-mesh/parse": {
       "post": {
         "operationId": "parse-mesh",
         "summary": "Read a mesh out of pasted text",
@@ -250,7 +250,7 @@
         }
       }
     },
-    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/printers/{device_id}/meshes": {
+    "/api/v1/modules/com.github.aux.honzajaros.connect-bed-mesh/printers/{device_id}/meshes": {
       "get": {
         "operationId": "list-meshes",
         "summary": "A printer's meshes",
@@ -344,7 +344,7 @@
         ]
       }
     },
-    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/printers/{device_id}/meshes/{mesh_id}": {
+    "/api/v1/modules/com.github.aux.honzajaros.connect-bed-mesh/printers/{device_id}/meshes/{mesh_id}": {
       "get": {
         "operationId": "read-mesh",
         "summary": "One mesh",

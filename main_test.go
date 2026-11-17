@@ -15,7 +15,7 @@ import (
 	"github.com/prusa3d/prusa-connect/sdk/deviceapi"
 	"github.com/prusa3d/prusa-connect/sdk/stateapi"
 
-	"github.com/honzajaros/prusa-connect-bed-mesh/internal/store"
+	"github.com/honzajaros/connect-bed-mesh/internal/store"
 )
 
 const printerID = "6968e07e-2fe8-498a-9ce3-cdebcf415f94"

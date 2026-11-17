@@ -1,4 +1,4 @@
-module github.com/honzajaros/prusa-connect-bed-mesh
+module github.com/honzajaros/connect-bed-mesh
 
 go 1.26.11
 
