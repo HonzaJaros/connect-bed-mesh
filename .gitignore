@@ -8,3 +8,7 @@
 /bedmesh-*.tar.gz
 /client/node_modules/
 /client/dist/
+
+# Keys never belong in the repository.
+*.pem
+*.key
