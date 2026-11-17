@@ -1,0 +1,51 @@
+# Bed Mesh: the manifest for both halves, the Go process (main.go, routes.go)
+# and the browser bundle under ui/.
+#
+# The namespace is derived by the host from the repository address:
+# github.com/honzajaros/prusa-connect-bed-mesh is
+# com.github.aux.honzajaros.prusa-connect-bed-mesh.
+
+name: bedmesh
+kind: sink
+version: 0.1.1
+license: MIT
+title: Bed Mesh
+summary: Shows the mesh bed leveling map of a Buddy printer as a heatmap and a 3D surface, and keeps a history of it.
+codeowner: Honza Jaros
+contract_major: 1
+openapi: openapi.json
+
+platforms:
+  - linux_amd64
+  - linux_arm64
+  - darwin_arm64
+  - windows_amd64
+
+require:
+  core: ">=0.1.0-beta.1"
+  # The process reads the printer a mesh belongs to, as the person who asked:
+  # that proves they may see it and says its model and bed temperature.
+  core-device.get: "*"
+
+options:
+  - key: keep_history
+    type: int
+    default: "50"
+    summary: How many meshes one printer keeps. Saving one more deletes the oldest.
+
+needs:
+  # One writable directory for the mesh history. The server's record store is
+  # served only when the operator declared a record backend, and the first-run
+  # wizard declares none.
+  data: true
+
+# The module acts only for the person who asked: it starts no work of its own,
+# so it asks for no permissions.
+
+ui:
+  entry: ui/index.js
+  library: ">=0.0.1 <1.0.0"
+  contributes:
+    device_tab:
+      - id: bed-mesh
+        title: Bed Mesh

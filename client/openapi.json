@@ -1,0 +1,417 @@
+{
+  "components": {
+    "schemas": {
+      "Grid": {
+        "type": "array",
+        "description": "The heights in millimetres, front row (lowest Y) first, each row from the lowest X. A null is a point the printer holds no value for.",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        }
+      },
+      "Bounds": {
+        "type": "object",
+        "description": "The area of the bed the mesh covers, in millimetres.",
+        "properties": {
+          "min_x": {
+            "type": "number"
+          },
+          "min_y": {
+            "type": "number"
+          },
+          "max_x": {
+            "type": "number"
+          },
+          "max_y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "min_x",
+          "min_y",
+          "max_x",
+          "max_y"
+        ]
+      },
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          },
+          "range": {
+            "type": "number",
+            "description": "Max minus min."
+          },
+          "mean": {
+            "type": "number"
+          },
+          "std_dev": {
+            "type": "number"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Points that hold a value."
+          },
+          "missing": {
+            "type": "integer",
+            "description": "Points that hold none."
+          }
+        },
+        "required": [
+          "min",
+          "max",
+          "range",
+          "mean",
+          "std_dev",
+          "points",
+          "missing"
+        ]
+      },
+      "Format": {
+        "type": "string",
+        "enum": [
+          "ubl",
+          "ubl-csv"
+        ],
+        "description": "The report the mesh was read from: M420 V, or M420 V T1."
+      },
+      "Printer": {
+        "type": "object",
+        "description": "The printer as Prusa Connect knew it when the mesh was saved.",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "firmware": {
+            "type": "string"
+          },
+          "bed_temp": {
+            "type": "number",
+            "description": "The bed temperature in °C when the mesh was saved."
+          }
+        }
+      },
+      "Parsed": {
+        "type": "object",
+        "properties": {
+          "format": {
+            "$ref": "#/components/schemas/Format"
+          },
+          "cols": {
+            "type": "integer"
+          },
+          "rows": {
+            "type": "integer"
+          },
+          "z": {
+            "$ref": "#/components/schemas/Grid"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/Bounds"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/Stats"
+          }
+        },
+        "required": [
+          "format",
+          "cols",
+          "rows",
+          "z",
+          "stats"
+        ]
+      },
+      "Summary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "device_id": {
+            "type": "string"
+          },
+          "saved_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "note": {
+            "type": "string"
+          },
+          "format": {
+            "$ref": "#/components/schemas/Format"
+          },
+          "cols": {
+            "type": "integer"
+          },
+          "rows": {
+            "type": "integer"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/Stats"
+          },
+          "printer": {
+            "$ref": "#/components/schemas/Printer"
+          }
+        },
+        "required": [
+          "id",
+          "device_id",
+          "saved_at",
+          "format",
+          "cols",
+          "rows",
+          "stats",
+          "printer"
+        ]
+      },
+      "Record": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Summary"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "z": {
+                "$ref": "#/components/schemas/Grid"
+              },
+              "bounds": {
+                "$ref": "#/components/schemas/Bounds"
+              }
+            },
+            "required": [
+              "z"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "bedmesh",
+    "version": "0.1.1",
+    "description": "The routes of the Bed Mesh extension. Every path is relative to the mount the host assigns. A printer is always read as the person who asked, and one they may not see answers PRINTER_NOT_FOUND."
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/parse": {
+      "post": {
+        "operationId": "parse-mesh",
+        "summary": "Read a mesh out of pasted text",
+        "description": "Reads the bed mesh out of what a Buddy printer printed for M420 V, and saves nothing. The page uses it to preview a paste.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "What the printer printed for M420 V, as copied out of a console."
+                  },
+                  "note": {
+                    "type": "string",
+                    "maxLength": 500,
+                    "description": "A note the person writes on the mesh, such as the sheet or what changed."
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The mesh found in the text.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Parsed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/printers/{device_id}/meshes": {
+      "get": {
+        "operationId": "list-meshes",
+        "summary": "A printer's meshes",
+        "description": "Every mesh saved for the printer, newest first, without their heights.",
+        "responses": {
+          "200": {
+            "description": "The printer's meshes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "meshes": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Summary"
+                      }
+                    }
+                  },
+                  "required": [
+                    "meshes"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The printer's id in Prusa Connect."
+          }
+        ]
+      },
+      "post": {
+        "operationId": "save-mesh",
+        "summary": "Save a mesh for a printer",
+        "description": "Reads the bed mesh out of pasted text and saves it in the printer's history, with the printer's model, firmware and bed temperature as Prusa Connect knows them now. Saving past the history's length deletes the oldest mesh.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "What the printer printed for M420 V, as copied out of a console."
+                  },
+                  "note": {
+                    "type": "string",
+                    "maxLength": 500,
+                    "description": "A note the person writes on the mesh, such as the sheet or what changed."
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The mesh as saved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Record"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The printer's id in Prusa Connect."
+          }
+        ]
+      }
+    },
+    "/api/v1/modules/com.github.aux.honzajaros.prusa-connect-bed-mesh/printers/{device_id}/meshes/{mesh_id}": {
+      "get": {
+        "operationId": "read-mesh",
+        "summary": "One mesh",
+        "description": "One saved mesh with its heights.",
+        "responses": {
+          "200": {
+            "description": "The mesh.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Record"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The printer's id in Prusa Connect."
+          },
+          {
+            "name": "mesh_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The mesh's id, from the list."
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "delete-mesh",
+        "summary": "Delete one mesh",
+        "description": "Deletes one mesh from the printer's history.",
+        "responses": {
+          "204": {
+            "description": "The mesh is deleted."
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The printer's id in Prusa Connect."
+          },
+          {
+            "name": "mesh_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The mesh's id, from the list."
+          }
+        ]
+      }
+    }
+  }
+}
