@@ -116,6 +116,11 @@ from GitHub Actions (`.github/workflows/release.yml`). One-time setup:
    ```bash
    gh secret set PRUSA_CONNECT_EXTENSION_SIGNING_KEY --env release < private_key.pem
    ```
+   ```bash
+   gh secret set PRUSA_CONNECT_EXTENSION_SIGNING_KEY < private_key.pem
+   ```
+   `release.yml` passes the repository-level copy to the builder by name: a
+   workflow in another account cannot read it through `secrets: inherit`.
 4. In the marketplace's author console, turn on **trusted publishing** for
    `com.github.aux.honzajaros.connect-bed-mesh`, repository
    `honzajaros/connect-bed-mesh`, workflow `release.yml`, environment `release`.

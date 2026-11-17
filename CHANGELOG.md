@@ -3,6 +3,11 @@
 What changes for an operator of Bed Mesh. The top heading is the `version` in
 `module.yaml`.
 
+## 0.1.3
+
+- The same extension as 0.1.2. The marketplace upload of 0.1.2 failed: the
+  release workflow did not pass the signing key to Prusa's builder.
+
 ## 0.1.2
 
 - The extension id is now `com.github.aux.honzajaros.connect-bed-mesh`, from
