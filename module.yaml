@@ -7,7 +7,7 @@
 
 name: bedmesh
 kind: sink
-version: 0.1.1
+version: 0.1.2
 license: MIT
 title: Bed Mesh
 summary: Shows the mesh bed leveling map of a Buddy printer as a heatmap and a 3D surface, and keeps a history of it.
