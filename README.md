@@ -96,45 +96,6 @@ open a printer's **Bed Mesh** tab.
 
 After changing `openapi.json`, run `make client` and commit what it writes.
 
-## Publish
-
-Releases go to the [Prusa Plugin Marketplace](https://plugin-marketplace.prusa3d.com/connect)
-from GitHub Actions (`.github/workflows/release.yml`). One-time setup:
-
-1. Push this repository to `github.com/honzajaros/connect-bed-mesh` as a **public**
-   repository. The extension id is derived from that path and never changes.
-2. Create an author profile on the marketplace, and make a signing key:
-   ```bash
-   openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
-   ```
-   ```bash
-   openssl rsa -pubout -in private_key.pem -out public_key.pem
-   ```
-   Upload `public_key.pem` to your author profile.
-3. In the GitHub repository, create an environment named `release` (tags `v*` only,
-   required reviewer: you), and store the key in it:
-   ```bash
-   gh secret set PRUSA_CONNECT_EXTENSION_SIGNING_KEY --env release < private_key.pem
-   ```
-   ```bash
-   gh secret set PRUSA_CONNECT_EXTENSION_SIGNING_KEY < private_key.pem
-   ```
-   `release.yml` passes the repository-level copy to the builder by name: a
-   workflow in another account cannot read it through `secrets: inherit`.
-4. In the marketplace's author console, turn on **trusted publishing** for
-   `com.github.aux.honzajaros.connect-bed-mesh`, repository
-   `honzajaros/connect-bed-mesh`, workflow `release.yml`, environment `release`.
-
-Then every release is:
-
-1. Raise `version` in `module.yaml` and add a section to `CHANGELOG.md`.
-2. Publish the GitHub release:
-   ```bash
-   gh release create v0.1.0 --title "0.1.0" --notes-file CHANGELOG.md
-   ```
-
-A pre-release goes to the beta channel. Prusa reviews every release before operators
-can install it.
 
 ## License
 
